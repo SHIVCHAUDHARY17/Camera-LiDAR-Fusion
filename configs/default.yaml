@@ -1,0 +1,31 @@
+# Camera-LiDAR Late Fusion - default configuration
+# All paths are absolute or relative to the project root.
+
+kitti:
+  root: "E:/kitti/training/training"   # contains calib/, image_2/, velodyne/, label_2/
+  split_file: "configs/val_split.txt"  # created later for benchmarking
+
+camera_detector:
+  weights: "yolov8n.pt"                # auto-downloaded by ultralytics on first run
+  confidence: 0.3
+  # COCO class IDs we keep: person(0), bicycle(1), car(2), motorcycle(3), bus(5), truck(7)
+  classes: [0, 1, 2, 3, 5, 7]
+
+lidar_detector:
+  dropout: 0.10
+  bbox_jitter_std: 3.0
+  confidence_alpha: 8.0
+  confidence_beta: 2.0
+  score_threshold: 0.3
+  seed: 42
+
+fusion:
+  iou_threshold: 0.3      # min 2D IoU to consider a camera/LiDAR pair a match
+  camera_weight: 0.4      # weight for camera score in fused confidence
+  lidar_weight: 0.6       # weight for LiDAR score (favoured - geometric ground truth)
+  min_confidence: 0.2     # drop unmatched detections below this
+
+output:
+  dir: "outputs"
+  save_images: true
+  save_bev: true
