@@ -120,6 +120,18 @@ The 0.24 → 0.62 jump came from three simultaneous fixes: (1) filtering MOTA GT
 | Depth-coloured Velodyne points | Point cloud + detection boxes |
 | ![lidar_on_image](docs/sample_lidar_on_image.jpg) | ![bev](docs/sample_bev.jpg) |
 
+### Multi-Object Tracking — KITTI Sequence 0001 (real 10 Hz video)
+
+Kalman filter tracks each object across 101 consecutive frames. Combined view: camera image with projected 3D boxes (top) + BEV with velocity arrows and trails (bottom).
+
+![tracking_demo](docs/tracking_demo.gif)
+
+### BEV Kalman Tracking
+
+Bird's eye view tracking from the detection-dataset runner — point cloud background, colour-coded tracks, velocity arrows, fading trails.
+
+![bev_demo](docs/bev_demo.gif)
+
 ---
 
 ## Setup
